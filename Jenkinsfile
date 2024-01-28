@@ -11,5 +11,15 @@ pipeline {
           echo 'Building succeded!'
           }
        }
+      stage ('test') {
+                steps {
+                sc 'mvn test'
+                }
+                post {
+                always {
+                junit 'target/surefire-reports/*xml'
+                }
+                }
+      }
     }
 }
