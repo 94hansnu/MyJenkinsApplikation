@@ -1,22 +1,17 @@
 pipeline {
+    agent any
+    tools {
 
-  agent any
-  tools {
-
-  }
-
-  stages {
-
-    stage ('build') {
-
-      steps {
-        echo 'building the application...'
-        script {
-            'mvn build'
-        }
-        echo 'Building succeeded!'
-      }
     }
-
-  }
+    stages {
+       stage ('Build') {
+         steps {
+         echo 'Building app...'
+         script {
+             'mvn build'
+             }
+          echo 'Building succeded!'
+          }
+       }
+    }
 }
