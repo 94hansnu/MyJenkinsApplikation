@@ -1,25 +1,27 @@
 pipeline {
     agent any
     tools {
-        maven 'Maven'
+       maven 'Maven'
     }
     stages {
        stage ('Build') {
          steps {
          echo 'Building app...'
-         sh 'mvn -B clean package'
+             sh 'mvn -B clean package'
           echo 'Building succeded!'
           }
        }
-      stage ('test') {
-                steps {
-                sc 'mvn test'
-                }
-                post {
-                always {
-                junit 'target/surefire-reports/*.xml'
-                }
-                }
-      }
+
+              stage ('Test') {
+                   steps {
+                        sh 'mvn test'
+                     }
+                      post {
+                        always {
+                           junit 'target/surefire-reports/*.xml'
+
+                   }
+               }
+            }
+       }
     }
-}
